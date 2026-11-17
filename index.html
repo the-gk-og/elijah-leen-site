@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Elijah Leen</title>
+<meta name="description" content="Elijah Leen, lighting and AV technician in Canberra.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap">
+<style>
+/* Layout: a plain, photo-led single page. One typeface, quiet chrome; Elijah's own photos and clips carry it. */
+:root {
+  --bg: #fbfafc;
+  --surface: #f0eef3;
+  --text: #17151c;
+  --muted: #5f5a69;
+  --rule: #e2dfe7;
+  --accent: #a3249e;   /* the magenta from his stage photos */
+  --night: #0c0b0f;    /* the hero band, always dark: it's a lit stage */
+  --night-text: #f3f1f6;
+  --night-muted: #a9a3b4;
+  --font: "Manrope", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111014; --surface: #1b1a20; --text: #f0eef3; --muted: #a6a0b0; --rule: #2b2932; --accent: #e47be0;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111014; --surface: #1b1a20; --text: #f0eef3; --muted: #a6a0b0; --rule: #2b2932; --accent: #e47be0;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 400 1.0625rem/1.7 var(--font); }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+img, video { display: block; max-width: 100%; }
+figure { margin: 0; min-width: 0; }
+figure img, figure video { width: 100%; height: 100%; object-fit: cover; border-radius: 6px; background: var(--surface); }
+figcaption { font-size: .85rem; color: var(--muted); margin-top: 8px; }
+
+.page {
+  max-width: 1120px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Hero (dark band) ---------- */
+.hero { background: var(--night); color: var(--night-text); }
+.hero a { color: var(--night-text); }
+nav { display: flex; justify-content: space-between; align-items: center; gap: 16px; padding-block: 22px; flex-wrap: wrap; }
+nav .me { font-weight: 800; text-decoration: none; }
+nav ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 22px; flex-wrap: wrap; }
+nav ul a { color: var(--night-muted) !important; text-decoration: none; font-weight: 500; font-size: .95rem; }
+nav ul a:hover { color: var(--night-text) !important; }
+.intro { padding-block: 24px 40px; }
+.hero-clip { padding-bottom: 56px; }
+.hero-clip video { aspect-ratio: 16 / 7; border-radius: 8px; background: #000; }
+.hero-clip figcaption { color: var(--night-muted); }
+.intro h1 { font-size: clamp(2.8rem, 7vw, 5rem); line-height: 1; letter-spacing: -.04em; font-weight: 800; margin: 0 0 18px; }
+.intro .lead { font-size: clamp(1.15rem, 2.2vw, 1.4rem); line-height: 1.45; margin: 0 0 16px; max-width: 30ch; }
+.intro p { color: var(--night-muted); margin: 0 0 28px; max-width: 50ch; }
+.intro figure video { aspect-ratio: 9 / 16; max-height: 600px; border-radius: 8px; background: #000; }
+.intro figcaption { color: var(--night-muted); }
+.button {
+  display: inline-block; background: var(--text); color: var(--bg); text-decoration: none;
+  padding: 13px 22px; border-radius: 999px; border: 0; font: inherit; font-weight: 700; cursor: pointer;
+}
+.button:hover { opacity: .88; }
+.hero .button { background: var(--night-text); color: var(--night) !important; }
+.hero .button.quiet { background: transparent; color: var(--night-text) !important; box-shadow: inset 0 0 0 1.5px #3a3642; }
+.actions { display: flex; gap: 10px; flex-wrap: wrap; }
+
+/* ---------- Sections ---------- */
+section { padding-block: 72px; }
+section + section { border-top: 1px solid var(--rule); }
+h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); letter-spacing: -.03em; line-height: 1.15; margin: 0 0 12px; font-weight: 800; text-wrap: balance; }
+.sub { color: var(--muted); margin: 0 0 32px; max-width: 60ch; }
+
+/* Gallery of rigs */
+.rigs { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 14px; }
+.rigs .wide { grid-column: span 6; }
+.rigs .wide img { aspect-ratio: 16 / 8; }
+.rigs .half { grid-column: span 3; }
+.rigs .half img { aspect-ratio: 4 / 3; }
+.rigs .third { grid-column: span 2; }
+.rigs .third img { aspect-ratio: 3 / 4; }
+
+/* About + work */
+.about { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 56px; align-items: start; }
+.about figure img { aspect-ratio: 3 / 4; }
+.about figure { max-width: 460px; justify-self: end; }
+@media (max-width: 860px) { .about figure { justify-self: start; } }
+.prose p { margin: 0 0 16px; max-width: 62ch; }
+.kit { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 22px 32px; margin-top: 28px; }
+.kit h3 { font-size: .95rem; font-weight: 700; margin: 0 0 4px; }
+.kit p { margin: 0; color: var(--muted); }
+
+.jobs { list-style: none; margin: 0; padding: 0; }
+.jobs li { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 2px 24px; padding-block: 20px; border-top: 1px solid var(--rule); }
+.jobs h3 { font-size: 1.08rem; margin: 0; font-weight: 700; }
+.jobs .where { color: var(--muted); }
+.jobs .when { color: var(--muted); font-size: .92rem; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.jobs p { grid-column: 1 / -1; margin: 6px 0 0; max-width: 64ch; }
+
+/* Drone */
+.air { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.air .lead-clip { grid-column: span 2; }
+.air .lead-clip video { aspect-ratio: 16 / 9; }
+.air img { aspect-ratio: 16 / 10; }
+
+/* Side projects */
+.side { display: grid; grid-template-columns: minmax(0, 340px) minmax(0, 1fr); gap: 48px; align-items: center; }
+.side figure img { aspect-ratio: 1; }
+.side figure img.portrait { aspect-ratio: 3 / 4; }
+.side h3 { font-size: 1.25rem; margin: 0 0 8px; font-weight: 800; }
+.side p { margin: 0 0 14px; color: var(--muted); max-width: 56ch; }
+.side .block + .block { margin-top: 28px; }
+
+/* Contact */
+.contact h2 { font-size: clamp(2rem, 5vw, 3.2rem); }
+.contact p { color: var(--muted); margin: 0 0 24px; max-width: 54ch; }
+.email { font-weight: 700; font-size: clamp(1.05rem, 3vw, 1.45rem); user-select: all; overflow-wrap: anywhere; margin: 0 0 18px !important; color: var(--text) !important; }
+#copyStatus { font-size: .9rem; min-height: 1.4em; margin: 12px 0 0 !important; }
+footer { border-top: 1px solid var(--rule); padding-block: 28px 44px; color: var(--muted); font-size: .9rem; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .hero-clip video { aspect-ratio: 16 / 10; }
+  .about, .side { grid-template-columns: 1fr; gap: 32px; }
+  .side figure { max-width: 340px; }
+}
+@media (max-width: 600px) {
+  .rigs .half, .rigs .wide { grid-column: span 6; }
+  .rigs .wide img { aspect-ratio: 4 / 3; }
+  .rigs .third { grid-column: span 3; }
+  .air { grid-template-columns: 1fr; }
+  .air .lead-clip { grid-column: span 1; }
+  .air .lead-clip video { aspect-ratio: 16 / 10; }
+  .kit { grid-template-columns: 1fr; gap: 16px; }
+  .jobs li { grid-template-columns: 1fr; }
+  section { padding-block: 56px; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <div class="page">
+    <nav>
+      <a class="me" href="#top">Elijah Leen</a>
+      <ul>
+        <li><a href="#rigs">Shows</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#drone">Drone</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+    <header class="intro" id="top">
+      <div>
+        <h1>Elijah Leen</h1>
+        <p class="lead">Lighting and AV technician in Canberra.</p>
+        <p>I work as an AV technician with Sidestage Production Services and have run lighting and sound for
+          shows at my school since 2023. I program on Eos, grandMA and ChamSys, and I'm Dante certified.</p>
+        <div class="actions">
+          <a class="button" href="#contact">Get in touch</a>
+          <a class="button quiet" href="https://www.instagram.com/elijah.leen/" target="_blank" rel="noopener">Instagram</a>
+        </div>
+      </div>
+    </header>
+    <figure class="hero-clip">
+      <video id="ledVideo" src="media/lake.mp4" poster="media/lake.jpg" autoplay muted loop playsinline
+        aria-label="Drone flight over a lake toward the city at dusk"></video>
+      <figcaption>Over the lake at dusk, shot on my DJI Air 2S</figcaption>
+    </figure>
+  </div>
+</div>
+
+<main class="page">
+  <section id="rigs">
+    <h2>Shows and rigs</h2>
+    <p class="sub">Some of the stages I've lit, and where the gear lives in between.</p>
+    <div class="rigs">
+      <figure class="wide">
+        <img src="media/outdoor-stage.jpg" alt="Outdoor stage with four truss towers, crossed LED battens in green, blue and magenta, and a drum kit" width="1800" height="1013">
+        <figcaption>Outdoor stage, March 2026</figcaption>
+      </figure>
+      <figure class="half">
+        <img src="media/indoor-stage.jpg" alt="Drum riser under a truss goalpost lit magenta against black drapes" width="1800" height="779">
+        <figcaption>Drum riser and truss, October 2026</figcaption>
+      </figure>
+      <figure class="half">
+        <img src="media/console.jpg" alt="A large lighting console with two touchscreens showing a 3D visualiser" width="1400" height="788">
+        <figcaption>On the desk, June 2026</figcaption>
+      </figure>
+      <figure class="third">
+        <img src="media/warehouse.jpg" alt="Racks of road cases in a warehouse, with moving heads and an LED tube on the floor" width="619" height="1100">
+        <figcaption>Warehouse, June 2026</figcaption>
+      </figure>
+      <figure class="third">
+        <img src="media/mixer.jpg" alt="Close-up of an Allen and Heath SQ-5 mixing desk with lit buttons" width="619" height="1100">
+        <figcaption>Allen &amp; Heath SQ-5, October 2026</figcaption>
+      </figure>
+      <figure class="third">
+        <img src="media/outdoor-stage-2.jpg" alt="The same outdoor stage with the battens in red and blue" width="1800" height="1013" style="object-position: 40% 50%">
+        <figcaption>Same rig, different look</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="about">
+      <div>
+        <h2>About me</h2>
+        <div class="prose">
+          <p>I'm in Year 11 at St Francis Xavier College. I set up, run and pack down lighting and audio for live
+            events, and look after gear in the warehouse between shows. I'm reliable, on time, and calm when it
+            gets busy.</p>
+          <p>I also have a background in networking, programming and IT troubleshooting, which comes in handy
+            whenever something on the show network doesn't behave.</p>
+        </div>
+        <div class="kit">
+          <div><h3>Lighting consoles</h3><p>ETC Eos, grandMA3, grandMA2, ChamSys</p></div>
+          <div><h3>Audio networking</h3><p>Dante certified, Levels 1, 2 and 3</p></div>
+          <div><h3>Live production</h3><p>Lighting and sound operation, setup and pack down, logistics</p></div>
+          <div><h3>Drone</h3><p>CASA Drone Accreditation</p></div>
+          <div><h3>Also</h3><p>CAD, 3D printing, websites, Python, Java, C++, C#</p></div>
+        </div>
+      </div>
+      <figure>
+        <img src="media/at-the-desk.jpg" alt="Elijah at an ETC Element lighting console in a dark control room, with the warm-lit stage visible through the window" width="1200" height="1600">
+        <figcaption>On an ETC Element, looking out over the stage</figcaption>
+      </figure>
+    </div>
+
+    <h2 style="margin-top:64px">Work</h2>
+    <ul class="jobs">
+      <li>
+        <div><h3>AV Technician</h3><span class="where">Sidestage Production Services</span></div>
+        <span class="when">Late 2025 – now</span>
+        <p>Lighting and audio for live events as part of the production crew, plus prepping, packing and returning
+          equipment in the warehouse.</p>
+      </li>
+      <li>
+        <div><h3>Work experience</h3><span class="where">Elite Event Tech</span></div>
+        <span class="when">June 2026</span>
+        <p>A placement alongside professional event production technicians.</p>
+      </li>
+      <li>
+        <div><h3>Work experience</h3><span class="where">Sidestage Production Services</span></div>
+        <span class="when">Nov 2025</span>
+        <p>An AV and live production placement that turned into my current job.</p>
+      </li>
+      <li>
+        <div><h3>School crew</h3><span class="where">St Francis Xavier College</span></div>
+        <span class="when">2023 – now</span>
+        <p>Sound and lighting for assemblies and performances, and setup, pack down and logistics for school events.</p>
+      </li>
+      <li>
+        <div><h3>Barista</h3><span class="where">Café</span></div>
+        <span class="when">Mar 2024 – now</span>
+        <p>Making coffee in a busy café. I finished a barista course in August 2024.</p>
+      </li>
+    </ul>
+  </section>
+
+  <section id="drone">
+    <h2>From the air</h2>
+    <p class="sub">When I'm not at a show I'm usually out with my DJI Air 2S, chasing storms and sunsets around Canberra.
+      I hold my CASA Drone Accreditation, so I can fly for clients as well as for fun.</p>
+    <div class="air">
+      <figure class="lead-clip">
+        <video id="droneVideo" src="media/building.mp4" poster="media/building.jpg" autoplay muted loop playsinline
+          aria-label="Drone view of a building and car park at night as the floodlights switch on"></video>
+        <figcaption>Catching the floodlights coming on, February 2026</figcaption>
+      </figure>
+      <figure>
+        <img src="media/storm.jpg" alt="A storm front with golden light under dark clouds over a suburb" width="1800" height="1013" loading="lazy">
+        <figcaption>Storm rolling in, October 2026</figcaption>
+      </figure>
+      <figure>
+        <img src="media/sunset-streaks.jpg" alt="Streaks of pink cloud over flat farmland at sunset" width="1800" height="1013" loading="lazy">
+        <figcaption>Sunset over the paddocks</figcaption>
+      </figure>
+      <figure>
+        <img src="media/sunset-trees.jpg" alt="Gum trees and a radio tower silhouetted against a red sunset" width="1600" height="900" loading="lazy">
+        <figcaption>Silhouettes at dusk</figcaption>
+      </figure>
+      <figure>
+        <img src="media/elijah.jpg" alt="Elijah sitting on a granite boulder under gum trees on a sunny day" width="1600" height="899" loading="lazy" style="object-position: 70% 60%">
+        <figcaption>Me, shot from my drone</figcaption>
+      </figure>
+    </div>
+    <p style="margin-top:22px"><a href="https://www.instagram.com/elijah.leen/" target="_blank" rel="noopener">More on Instagram, @elijah.leen</a></p>
+  </section>
+
+  <section id="volunteering">
+    <div class="side">
+      <figure>
+        <img class="portrait" src="media/medallion.jpg" alt="Elijah holding his volunteer medallion in its case, standing beside the Governor-General at an outdoor event" width="900" height="1200" loading="lazy">
+        <figcaption>With the Governor-General and my medallion</figcaption>
+      </figure>
+      <div>
+        <h2>Volunteering</h2>
+        <p>I was presented with a medallion by the Governor-General in recognition of my volunteer work.</p>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="side">
+      <figure>
+        <img src="media/printer.jpg" alt="An enclosed 3D printer with a multi-colour filament unit on a shelf" width="1100" height="1100" loading="lazy">
+        <figcaption>The ShowWise Prints setup</figcaption>
+      </figure>
+      <div>
+        <div class="block">
+          <h3>ShowWise Prints</h3>
+          <p>My Canberra 3D printing business. I design custom parts in CAD to repair or improve things, then
+            print them and handle the orders myself.</p>
+        </div>
+        <div class="block">
+          <h3>Code and robots</h3>
+          <p>I build web apps and small software tools. In 2019 I built and programmed a robot for RoboCup ACT and
+            came second, 5 points off first.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Need crew for a show?</h2>
+    <p>I'm free weekday afternoons after school and anytime on weekends. Referees are available on request.</p>
+    <p class="email" id="email">elijahlsleen@gmail.com</p>
+    <button class="button" id="copyBtn" type="button">Copy email</button>
+    <p id="copyStatus" aria-live="polite"></p>
+  </section>
+
+  <footer>
+    <span>© 2026 Elijah Leen</span>
+    <span>All photos and video by me</span>
+  </footer>
+</main>
+
+<script>
+  (function () {
+    // Respect reduced motion: show the poster frames instead of looping clips.
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      ['ledVideo', 'droneVideo'].forEach(function (id) {
+        var v = document.getElementById(id); if (v) { v.removeAttribute('autoplay'); v.pause(); }
+      });
+    }
+    var btn = document.getElementById('copyBtn');
+    var email = document.getElementById('email');
+    var status = document.getElementById('copyStatus');
+    function selectEmail() {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      status.textContent = 'Selected. Press Ctrl+C to copy.';
+    }
+    btn.addEventListener('click', function () {
+      try {
+        navigator.clipboard.writeText(email.textContent.trim()).then(function () {
+          status.textContent = 'Copied.';
+        }, selectEmail);
+      } catch (e) { selectEmail(); }
+    });
+  })();
+</script>
+</body>
+</html>
